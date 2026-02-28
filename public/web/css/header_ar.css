@@ -1,0 +1,218 @@
+/* === Header Container Flex === */
+.header-ctn {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 18px;
+}
+
+.header-ctn > div {
+    float: none !important;
+}
+
+/* Language Dropdown */
+.lang-dropdown .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #fff !important; /* Force white color */
+}
+
+.lang-dropdown .lang-toggle i.fa-globe {
+    color: #fff !important;
+}
+
+.lang-dropdown .lang-text {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #fff !important;
+}
+
+.lang-dropdown .lang-menu {
+    min-width: 140px;
+    padding: 6px 0;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+    background-color: #fff;
+    color: #333;
+}
+
+.lang-dropdown .lang-item {
+    padding: 8px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
+    transition: background-color 0.2s, color 0.2s;
+    text-decoration: none;
+}
+
+.lang-dropdown .lang-item:hover {
+    background-color: #f7f7f7;
+    color: #d10024;
+}
+
+.lang-dropdown .lang-item.active {
+    font-weight: 600;
+    color: #d10024;
+}
+
+/* Wishlist & Cart links */
+.header-ctn > div > a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    text-decoration: none;
+    color: #fff !important; /* Force white color */
+    font-weight: 500;
+}
+
+/* Cart and Wishlist Icons */
+.header-ctn i.fa-shopping-cart,
+.header-ctn i.fa-heart-o {
+    color: #fff !important;
+}
+
+/* Badge styles for qty */
+.qty {
+    font-size: 0.75rem;
+    padding: 3px 7px;
+    position: relative;
+    top: -10px;
+    border-radius: 50%;
+    background-color: #d10024 !important;
+    color: white;
+    font-weight: 600;
+}
+
+/* Cart dropdown */
+.cart-dropdown {
+    min-width: 320px;
+    max-height: 350px;
+    overflow-y: auto;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Top Header */
+#top-header {
+    background: #111;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #ddd;
+}
+
+#top-header ul.header-links li {
+    margin-left: 25px;
+}
+
+#top-header ul.header-links li i {
+    margin-left: 6px;
+    color: #d10024;
+}
+
+/* Main Header */
+#header {
+    background-color: #121212;
+    padding: 15px 0;
+    border-bottom: 2px solid #d10024;
+}
+
+/* Search box */
+.header-search input,
+.header-search select {
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+    border: 1px solid #ccc;
+}
+
+.header-search button {
+    background-color: #d10024;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.header-search button:hover {
+    background-color: #a7001b;
+}
+
+.search-form {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.category-select {
+    flex-shrink: 0;
+    width: 160px;
+    min-width: 160px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+}
+
+.search-input {
+    flex-grow: 1;
+    min-width: 0; /* مهم لمنع overflow داخل flex container */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+    padding: 6px 12px;
+}
+
+.search-btn {
+    flex-shrink: 0;
+    padding: 8px 24px;
+    border-radius: 5px;
+    border: none;
+    background-color: #d10024;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: #a7001b;
+}
+
+/* Responsive: لو عايز تخفي البحث مثلاً على الموبايل */
+@media (max-width: 768px) {
+    .search-form {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .category-select,
+    .search-input,
+    .search-btn {
+        width: 100%;
+        min-width: auto;
+    }
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-search {
+        display: none;
+    }
+    .header-ctn span.lang-text {
+        display: none;
+    }
+    .menu-toggle {
+        display: block !important;
+    }
+}
