@@ -3,351 +3,307 @@
 @section('content')
 
 <style>
-    /* الحاوية الأساسية */
-.maintenance-wrapper {
-    background-color: #f8fafc;
-    padding: 40px 20px;
-    min-height: 100vh;
-}
-
-.maintenance-form-card {
-    max-width: 1200px;
-    margin: 0 auto;
+/* الحاوية الأساسية */
+.my-orders-section {
+    background-color: #f1f5f9;
+    padding: 60px 0;
+    min-height: 80vh;
 }
 
 /* الهيدر */
-.form-header {
+.orders-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
-.form-header h1 {
+.orders-header h1 {
     font-weight: 800;
-    color: #1e293b;
-    font-size: 2rem;
+    color: #0f172a;
+    font-size: 2.5rem;
     margin-bottom: 10px;
 }
 
-.form-header p {
+.orders-header p {
     color: #64748b;
+    font-size: 1.1rem;
 }
 
 /* شبكة الطلبات */
 .orders-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
 }
 
 /* الكارت */
 .order-card {
     background: #ffffff;
-    border-radius: 20px;
+    border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
-    border: 1px solid #e2e8f0;
+    border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
 .order-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
-/* الصورة والحالة العائمة */
-.product-image-wrapper {
+/* الصورة والحالة */
+.order-image-box {
     position: relative;
-    height: 200px;
+    height: 240px;
+    background-color: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.product-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.order-image-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s ease;
 }
 
-.floating-status {
+.order-card:hover .order-image-box img {
+    transform: scale(1.1);
+}
+
+/* الأوسمة العائمة */
+.status-badge {
     position: absolute;
     top: 15px;
     right: 15px;
-    padding: 6px 14px;
-    border-radius: 50px;
+    z-index: 10;
+    padding: 6px 16px;
+    border-radius: 12px;
     font-size: 0.8rem;
-    font-weight: 700;
+    font-weight: 800;
     display: flex;
     align-items: center;
-    gap: 6px;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* ألوان الحالات */
-.status-pending { background: rgba(254, 243, 199, 0.9); color: #d97706; }
-.status-delivering { background: rgba(219, 234, 254, 0.9); color: #2563eb; }
-.status-done { background: rgba(220, 252, 231, 0.9); color: #16a34a; }
+.status-completed { background: #dcfce7; color: #15803d; }
+.status-delivery { background: #dbeafe; color: #1d4ed8; }
+.status-pending { background: #fef3c7; color: #b45309; }
+.status-cancelled { background: #fee2e2; color: #b91c1c; }
 
 /* محتوى الكارت */
 .order-card-body {
-    padding: 20px;
-    flex-grow: 1;
+    padding: 25px;
 }
 
-.product-title {
-    display: block;
-    font-size: 1.1rem;
+.order-title {
+    font-size: 1.2rem;
     font-weight: 700;
     color: #1e293b;
     margin-bottom: 15px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: block;
+    text-decoration: none;
 }
 
-/* شبكة المعلومات (التاريخ والكمية) */
-.info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.info-item {
+/* جدول البيانات */
+.order-meta-table {
     display: flex;
-    flex-direction: column;
+    background: #f8fafc;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    padding: 10px 0;
 }
 
-.info-label {
-    font-size: 0.75rem;
+.meta-item {
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid #e2e8f0;
+}
+
+.meta-item:last-child { border-right: none; }
+
+.meta-label {
+    display: block;
+    font-size: 0.7rem;
     color: #94a3b8;
     text-transform: uppercase;
+    margin-bottom: 4px;
 }
 
-.info-value {
+.meta-value {
+    display: block;
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 700;
     color: #334155;
 }
 
 /* شريط التقدم */
-.mini-progress-bar {
-    height: 6px;
-    background: #f1f5f9;
+.order-progress-container {
+    margin-bottom: 10px;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.mini-bar {
+    height: 8px;
+    background: #e2e8f0;
     border-radius: 10px;
-    margin-bottom: 15px;
     overflow: hidden;
 }
 
-.progress-fill {
+.bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, #3b82f6, #2563eb);
-    border-radius: 10px;
-    transition: width 0.5s ease-in-out;
+    background: linear-gradient(90deg, #D10024, #ff4d4d); /* Electro Red Gradient */
+    transition: width 1s ease-in-out;
 }
 
-/* الفوتر */
-.order-footer {
-    padding: 15px 20px;
-    background: #f8fafc;
-    border-top: 1px solid #e2e8f0;
+/* الفوتر والسعر */
+.order-card-footer {
+    padding: 20px 25px;
+    background: #fafafa;
+    border-top: 1px solid #f1f5f9;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.price-box {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #0f172a;
+.order-price {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #D10024;
 }
 
-.price-box span {
-    font-size: 0.8rem;
+.order-price span {
+    font-size: 0.85rem;
     color: #64748b;
-    margin-right: 4px;
+    margin-left: 3px;
+}
+
+.btn-view-order {
+    background: #1e293b;
+    color: #fff !important;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.btn-view-order:hover {
+    background: #000;
+    transform: scale(1.05);
 }
 
 /* حالة لا توجد طلبات */
-.empty-orders {
+.no-orders {
     grid-column: 1 / -1;
     text-align: center;
-    padding: 60px;
-    background: white;
-    border-radius: 20px;
+    background: #fff;
+    padding: 80px;
+    border-radius: 30px;
 }
 
-.empty-orders i {
-    font-size: 4rem;
-    color: #cbd5e1;
+.no-orders i {
+    font-size: 5rem;
+    color: #e2e8f0;
     margin-bottom: 20px;
 }
-
-
-/* حاوية الصورة */
-.product-image-wrapper {
-    position: relative;
-    height: 220px; /* ارتفاع ثابت ومناسب */
-    background-color: #f8fafc; /* خلفية فاتحة تظهر حدود المنتج */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    overflow: hidden;
-}
-
-.product-image-wrapper img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; /* ده أهم سطر عشان الصورة متتمطش وتظهر كاملة */
-    transition: transform 0.3s ease;
-}
-
-.order-card:hover .product-image-wrapper img {
-    transform: scale(1.08); /* تأثير تكبير بسيط عند التمرير */
-}
-
-/* حالة الطلب العائمة (زي اللي في الصورة) */
-.floating-status {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    z-index: 10;
-    padding: 5px 12px;
-    border-radius: 8px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-/* تنسيق الجدول الصغير للمعلومات */
-.info-table {
-    display: flex;
-    width: 100%;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    margin: 15px 0;
-    overflow: hidden;
-}
-
-.info-column {
-    flex: 1;
-    text-align: center;
-    padding: 8px 5px;
-    border-right: 1px solid #e2e8f0;
-}
-
-.info-column:last-child {
-    border-right: none;
-}
-
-.info-column .label {
-    display: block;
-    font-size: 0.7rem;
-    color: #94a3b8;
-    margin-bottom: 2px;
-}
-
-.info-column .val {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #1e293b;
-}
-
-/* زر التفاصيل والسعر */
-.order-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background: #fdfdfd;
-    border-top: 1px solid #f1f5f9;
-}
-
-.btn-details {
-    background: #1e293b;
-    color: white !important;
-    padding: 8px 20px;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    text-decoration: none;
-    transition: background 0.3s;
-}
-
-.btn-details:hover {
-    background: #334155;
-}
 </style>
-<div class="maintenance-wrapper">
-    <div class="maintenance-form-card">
 
-        <!-- Header -->
-        <div class="form-header">
-           <h1>{{ __('طلباتك') }}</h1>
-        <p>{{ __('تتبع مشترياتك السابقة والحالية بكل سهولة') }}</p>
+<div class="my-orders-section">
+    <div class="container">
+
+        <div class="orders-header">
+            <h1>{{ __('My Orders') }}</h1>
+            <p>{{ __('Track and manage your recent and past purchases') }}</p>
         </div>
 
+        <div class="orders-grid">
+            @forelse ($orders as $order)
+                @foreach ($order->items as $item)
+                <div class="order-card">
+                    <div class="order-image-box">
+                        <div class="status-badge
+                            @if($order->status == 'completed') status-completed
+                            @elseif($order->status == 'delivery') status-delivery
+                            @elseif($order->status == 'cancelled') status-cancelled
+                            @else status-pending @endif">
 
-
-  <div class="orders-grid">
-    @forelse ($orders as $order)
-        @foreach ($order->items as $item)
-        <div class="order-card">
-            <div class="product-image-wrapper">
-                <div class="floating-status
-                    @if($order->status == 4) status-done
-                    @elseif($order->status == 3) status-delivering
-                    @else status-pending @endif">
-
-                    @if($order->status == 'pending') <i class="fas fa-clock"></i> {{ __('قيد الانتظار') }}
-                    @elseif($order->status == 'delivery') <i class="fas fa-truck"></i> {{ __('يتم التوصيل') }}
-                    @elseif($order->status == 'cancelled') <i class="fas fa-truck"></i> {{ __('يتم التوصيل') }}
-                    @elseif($order->status == 'completed') <i class="fas fa-check-circle"></i> {{ __('مكتمل') }}
-                    @endif
-                </div>
-
-                <img src="{{ asset($item->product->images->first()->image ?? 'default.png') }}" alt="product">
-            </div>
-
-            <div class="order-card-body">
-                <h3 class="product-title">{{ $item->product->{'product_name_' . app()->getLocale()} }}</h3>
-
-                <div class="info-table">
-                    <div class="info-column">
-                        <span class="label">{{ __('التاريخ') }}</span>
-                        <span class="val">{{ $order->created_at->format('Y-m-d') }}</span>
+                            @if($order->status == 'pending') <i class="fas fa-clock"></i> {{ __('Pending') }}
+                            @elseif($order->status == 'delivery') <i class="fas fa-truck"></i> {{ __('Delivering') }}
+                            @elseif($order->status == 'completed') <i class="fas fa-check-circle"></i> {{ __('Completed') }}
+                            @elseif($order->status == 'cancelled') <i class="fas fa-times-circle"></i> {{ __('Cancelled') }}
+                            @endif
+                        </div>
+                        <img src="{{ asset($item->product->images->first()->image ?? 'img/default.png') }}" alt="product">
                     </div>
-                    <div class="info-column">
-                        <span class="label">{{ __('الكمية') }}</span>
-                        <span class="val">{{ $item->quantity }}</span>
-                    </div>
-                    <div class="info-column">
-                        <span class="label">{{ __('الطلب #') }}</span>
-                        <span class="val">{{ $order->id }}</span>
-                    </div>
-                </div>
 
-                <div class="mini-progress-bar">
-                    <div class="progress-fill" style="width: {{ $order->status == 'completed' ? '100' : ($order->status == 'delivery' ? '75' : '25') }}%"></div>
-                </div>
-            </div>
+                    <div class="order-card-body">
+                        <a href="{{ route('products.detail', $item->product_id) }}" class="order-title">
+                            {{ $item->product->name[app()->getLocale()] ?? $item->product->name }}
+                        </a>
 
-            <div class="order-footer">
-                <div class="price-box">
-                    {{ number_format($item->price, 0) }} <span>ج.م</span>
+                        <div class="order-meta-table">
+                            <div class="meta-item">
+                                <span class="meta-label">{{ __('Date') }}</span>
+                                <span class="meta-value">{{ $order->created_at->format('d M, Y') }}</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">{{ __('Qty') }}</span>
+                                <span class="meta-value">{{ $item->quantity }}</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">{{ __('Order ID') }}</span>
+                                <span class="meta-value">#{{ $order->id }}</span>
+                            </div>
+                        </div>
+
+                        <div class="order-progress-container">
+                            <div class="progress-label">
+                                <span>{{ __('Status Progress') }}</span>
+                                <span>
+                                    @if($order->status == 'completed') 100%
+                                    @elseif($order->status == 'delivery') 75%
+                                    @elseif($order->status == 'cancelled') 0%
+                                    @else 25% @endif
+                                </span>
+                            </div>
+                            <div class="mini-bar">
+                                <div class="bar-fill" style="width: {{ $order->status == 'completed' ? '100' : ($order->status == 'delivery' ? '75' : ($order->status == 'cancelled' ? '0' : '25')) }}%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-card-footer">
+                        <div class="order-price">
+                            {{ number_format($item->price, 0) }} <span>EGP</span>
+                        </div>
+                        <a href="#" class="btn-view-order">
+                            {{ __('Details') }}
+                        </a>
+                    </div>
                 </div>
-                <a href="#" class="btn-details">
-                    {{ __('التفاصيل') }}
-                </a>
-            </div>
+                @endforeach
+            @empty
+                <div class="no-orders">
+                    <i class="fas fa-shopping-bag"></i>
+                    <h2>{{ __('No orders found') }}</h2>
+                    <p>{{ __('Looks like you haven\'t made any orders yet.') }}</p>
+                    <a href="{{ url('/') }}" class="primary-btn mt-3">{{ __('Start Shopping') }}</a>
+                </div>
+            @endforelse
         </div>
-        @endforeach
-    @empty
-        @endforelse
+    </div>
 </div>
-</div>
-</div>
+
 @endsection

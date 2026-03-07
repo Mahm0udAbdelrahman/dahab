@@ -10,6 +10,7 @@ use App\Http\Controllers\Web\FavoriteController;
 use App\Http\Controllers\Web\RegisterController;
 use App\Http\Controllers\Web\MaintenanceController;
 use App\Http\Controllers\Web\HistoryOrderController;
+use App\Http\Controllers\Web\ProductController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(
@@ -35,6 +36,7 @@ Route::group(
             Route::get('/sales', [SaleController::class, 'index'])->name('sales');
             Route::post('/sales', [SaleController::class, 'store'])->name('sales.store');
             Route::get('/products/{id}', [HomeController::class, 'detail'])->name('products.detail');
+            Route::get('/products', [ProductController::class, 'index'])->name('products.index');
             // Route::get('/products/search', [HomeController::class, 'search'])->name('products.search');
 
         });

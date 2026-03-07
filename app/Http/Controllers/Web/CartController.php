@@ -35,7 +35,9 @@ class CartController extends Controller
         $product = Product::findOrFail($request->product_id);
         $cart->add($product, $request->quantity ?? 1);
 
-        $cart_product = Cart::where('product_id', $request->product_id)->first();
+        $cart_product = Cart::where('user_id', auth()->id())
+            ->where('product_id', $request->product_id)
+            ->first();
         $cart_product->update([
             'price' => $product->price,
             'total' => $product->price * $request->quantity ?? 1,

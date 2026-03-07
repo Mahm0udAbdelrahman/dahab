@@ -15,9 +15,10 @@ class HistoryOrderController extends Controller
 
     public function index()
     {
-        return $this->orderService->index();
+        $orders =  $this->orderService->index();
+         return view('web.pages.history_order', compact('orders'));
     }
 
-    
+
 
 }

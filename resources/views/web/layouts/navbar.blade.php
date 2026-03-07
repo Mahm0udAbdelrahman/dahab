@@ -5,12 +5,16 @@
                 <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
                     <a href="{{ route('home') }}">{{ __('Home') }}</a>
                 </li>
+                <li class="{{ request()->routeIs('products.index') ? 'active' : '' }}">
+                    <a href="{{ route('products.index') }}">{{ __('Products') }}</a>
+                </li>
                 <li class="{{ request()->routeIs('maintenance') ? 'active' : '' }}">
                     <a href="{{ route('maintenance') }}">{{ __('Maintenance') }}</a>
                 </li>
-                <li class="{{ request()->is('sales') ? 'active' : '' }}">
+                <li class="{{ request()->routeIs('sales') ? 'active' : '' }}">
                     <a href="{{ route('sales') }}">{{ __('Mobile phones for sale') }}</a>
                 </li>
+
                 @if (Auth::check())
                     <li>
                         <a href="{{ route('history_order.index') }}" class="text-decoration-none">{{ __('History Orders') }}</a>
