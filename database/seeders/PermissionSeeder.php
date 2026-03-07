@@ -24,6 +24,7 @@ class PermissionSeeder extends Seeder
             'settings-update',
             'maintenances-index','maintenances-show','maintenances-update','maintenances-delete',
             'sales-index','sales-show','sales-update','sales-delete',
+            'orders-index','orders-show','orders-update','orders-delete',
         ];
         foreach ($permissions as $permission) {
             Permission::firstOrCreate(['name' => $permission]);

@@ -108,7 +108,55 @@
                     </div>
                 </li>
 
-
+  <li class="dropdown pc-h-item">
+                    <a class="pc-head-link dropdown-toggle me-0 position-relative" data-pc-toggle="dropdown"
+                        href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <i data-feather="bell"></i>
+                        @if (Auth::user()->unreadNotifications()->count())
+                            <span class="badge bg-danger text-white rounded-full z-10 absolute right-0 top-0"
+                                style="font-size: 10px; min-width: 18px; height: 18px; line-height: 18px; text-align: center;"
+                                id="notificationsIconCounter">
+                                {{ Auth::user()->unreadNotifications()->count() }}
+                            </span>
+                        @endif
+                    </a>
+                    <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown p-2"
+                        style="width: 380px; max-height: 450px; overflow-y: auto; border-radius: 8px;">
+                        <div class="dropdown-header bg-primary text-black text-center py-2">
+                            <strong>{{ __('Notifications') }}</strong>
+                        </div>
+                        <div class="dropdown-body header-notification-scroll relative py-2 px-3">
+                            @forelse(auth()->user()->notifications()->orderBy('created_at', 'desc')->take(5)->get() as $notification)
+                                <a href="{{ $notification->data['url'] ?? '#' }}?notification_id={{ $notification->id }}"
+                                    class="d-flex gap-3 align-items-start mark-as-read mb-3 text-decoration-none"
+                                    data-id="{{ $notification->id }}"
+                                    style="color: {{ $notification->read_at ? '#6c757d' : '#212529' }};">
+                                    <i class="fas fa-bell text-primary fs-5 flex-shrink-0"></i>
+                                    <div class="w-100">
+                                        <div class="d-flex justify-content-between">
+                                            <p class="mb-1 {{ !$notification->read_at ? 'fw-bold' : '' }}">
+                                                {{ $notification->data['message'] ?? 'No message' }}
+                                            </p>
+                                            <small class="text-muted" style="white-space: nowrap;">
+                                                {{ $notification->created_at->diffForHumans() }}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </a>
+                            @empty
+                                <div class="text-center text-muted py-3">
+                                    {{ __('No new notifications') }}
+                                </div>
+                            @endforelse
+                        </div>
+                        <div class="text-center p-2 border-top">
+                            <a href="{{ route('Admin.notifications.markAllRead') }}"
+                                class="btn btn-sm btn-outline-primary me-2">{{ __('Read All') }}</a>
+                            {{--  <a href="{{ route('Admin.notifications') }}"
+                                class="btn btn-sm btn-primary">{{ __('Index All') }}</a>  --}}
+                        </div>
+                    </div>
+                </li>
 
 
                 <li class="dropdown pc-h-item header-user-profile">
@@ -179,3 +227,17 @@
         </div>
     </div>
 </header>
+<script>
+    setInterval(() => {
+        fetch("{{ route('notifications.count') }}")
+            .then(response => response.json())
+            .then(data => {
+                const counter = document.getElementById('notificationsIconCounter');
+                const currentCount = counter ? parseInt(counter.textContent) : 0;
+
+                if (data.unread_count > currentCount) {
+                    location.reload();
+                }
+            });
+    }, 10000);
+</script>

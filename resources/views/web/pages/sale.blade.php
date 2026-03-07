@@ -25,9 +25,10 @@
                     <form action="{{ route('sales.store') }}" method="POST" enctype="multipart/form-data" class="modern-form">
                         @csrf
 
-                        <div class="form-group-modern">
-                            <label><i class="fa fa-user"></i> {{ __('Name & Phone') }}</label>
-                            <input type="text" name="name" class="input-modern" placeholder="e.g. Mahmoud - 010xxxx" required>
+                      <div class="form-group-modern">
+                            <label><i class="fa fa-user"></i> {{ __('Name Phone') }}</label>
+                            <input type="text" name="title" class="input-modern" placeholder="e.g. Samsung Galaxy S21" required>
+                            <span class="focus-border"></span>
                         </div>
 
                         <div class="form-group-modern">

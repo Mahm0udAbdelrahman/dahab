@@ -1,13 +1,16 @@
 <?php
 namespace App\Services\Web;
 
-use App\Traits\HasImage;
 use App\Models\Maintenance;
+use App\Models\User;
+use App\Notifications\DashboardNotification;
+use App\Traits\HasImage;
+use Illuminate\Support\Facades\Notification;
 
 class MaintenanceService
 {
     use HasImage;
-    
+
 
     public function store($data)
     {
@@ -15,6 +18,18 @@ class MaintenanceService
         if (isset($data['image'])) {
            $data['image']  = $this->saveImage($data['image'], 'maintenance/images');
         }
-        return Maintenance::create($data);
+      $maintenance =  Maintenance::create($data);
+        $admins = User::whereHas('roles', fn($q) => $q->where('name', 'admin'))->get();
+
+                Notification::send(
+                    $admins,
+                    notification: new DashboardNotification(
+                        $maintenance->id,
+                        $maintenance->user->name,
+                        null,
+                        'maintenances'
+                    )
+                );
+            return $maintenance;
     }
 }

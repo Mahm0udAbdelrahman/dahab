@@ -3,6 +3,9 @@ namespace App\Services\Web;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\User;
+use App\Notifications\DashboardNotification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 
 class OrderService
@@ -40,6 +43,17 @@ class OrderService
             }
         }
         Cart::where('user_id', $user->id)->delete();
+        $admins = User::whereHas('roles', fn($q) => $q->where('name', 'admin'))->get();
+
+        Notification::send(
+            $admins,
+            new DashboardNotification(
+                $order->id,
+                $order->user->name,
+                $order->total,
+                'order'
+            )
+        );
         Session::flash('message', ['type' => 'success', 'text' => __('تم إنشاء الطلب بنجاح')]);
         return redirect()->route('carts.index')->with('success', 'تم إنشاء الطلب بنجاح');
     }

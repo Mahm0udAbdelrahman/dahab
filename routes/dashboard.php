@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\MaintenanceController;
 use App\Http\Controllers\Dashboard\NotificationController;
+use App\Http\Controllers\Dashboard\OrderController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\SaleController;
@@ -74,6 +75,11 @@ Route::group(
             Route::resource('maintenances', MaintenanceController::class);
             Route::post('maintenances/bulk-delete', [MaintenanceController::class, 'bulkDelete'])
                 ->name('maintenances.bulkDelete');
+
+                // orders
+                Route::resource('orders', OrderController::class);
+            Route::post('orders/bulk-delete', [OrderController::class, 'bulkDelete'])
+                ->name('orders.bulkDelete');
 
         });
     });

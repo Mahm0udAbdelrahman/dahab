@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete();
             $table->string('total')->nullable();
-            $table->enum('status',['pending','cancelled','completed'])->default('pending');
+            $table->enum('status',['pending','delivery','cancelled','completed'])->default('pending');
             $table->string('name')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();

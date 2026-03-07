@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <strong>{{ __('User Phone') }}:</strong>
-                                    <p>{{ $maintenance->user->name ?? '-' }}</p>
+                                    <p>{{ $maintenance->user->phone ?? '-' }}</p>
                                 </div>
 
                                 <div class="col-md-6 mb-3">

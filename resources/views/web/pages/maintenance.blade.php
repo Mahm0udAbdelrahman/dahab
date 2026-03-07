@@ -25,8 +25,8 @@
                         @csrf
 
                         <div class="form-group-modern">
-                            <label><i class="fa fa-user"></i> {{ __('Name & Phone') }}</label>
-                            <input type="text" name="title" class="input-modern" placeholder="e.g. Mahmoud - 010xxxx" required>
+                            <label><i class="fa fa-user"></i> {{ __('Name Phone') }}</label>
+                            <input type="text" name="title" class="input-modern" placeholder="e.g. Samsung Galaxy S21" required>
                             <span class="focus-border"></span>
                         </div>
 
