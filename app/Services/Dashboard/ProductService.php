@@ -75,6 +75,12 @@ class ProductService
         return $product;
     }
 
+    public function deleteProductImage($imageId)
+    {
+        $image = \App\Models\ProductImage::findOrFail($imageId);
+        $this->deleteImage($image->image);
+        return $image->delete();
+    }
     public function bulkDelete($ids)
     {
         return $this->model->whereIn('id', $ids)->delete();

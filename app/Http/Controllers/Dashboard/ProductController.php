@@ -1,19 +1,20 @@
 <?php
-
 namespace App\Http\Controllers\Dashboard;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Session;
-use App\Http\Requests\Dashboard\Product\{StoreProductRequest, UpdateProductRequest};
+use App\Http\Requests\Dashboard\Product\StoreProductRequest;
+use App\Http\Requests\Dashboard\Product\UpdateProductRequest;
 use App\Services\Dashboard\ProductService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
-    public function __construct(public ProductService $productService) {}
+    public function __construct(public ProductService $productService)
+    {}
     public function index(Request $request)
     {
-        $products  = $this->productService->index();
+        $products = $this->productService->index();
         return view('dashboard.pages.products.index', compact('products'));
     }
     public function create()
@@ -39,7 +40,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-         $product = $this->productService->show($id);
+        $product    = $this->productService->show($id);
         $categories = $this->productService->getCategories();
         return view('dashboard.pages.products.edit', compact('product', 'categories'));
     }
@@ -58,6 +59,23 @@ class ProductController extends Controller
         $this->productService->destroy($id);
 
         return redirect()->route('Admin.products.index')->with('success', 'Product Successfully.');
+    }
+
+    public function deleteImage($id)
+    {
+        try {
+            $this->productService->deleteProductImage($id);
+
+            return response()->json([
+                'status'  => true,
+                'message' => __('Image deleted successfully'),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status'  => false,
+                'message' => __('Something went wrong'),
+            ], 500);
+        }
     }
 
     public function bulkDelete(Request $request)

@@ -81,6 +81,8 @@ Route::group(
             Route::post('orders/bulk-delete', [OrderController::class, 'bulkDelete'])
                 ->name('orders.bulkDelete');
 
+                Route::delete('products/image/{id}', [ProductController::class, 'deleteImage'])->name('Admin.products.image.destroy');
+
         });
     });
 Route::get('/notifications/count', function () {
