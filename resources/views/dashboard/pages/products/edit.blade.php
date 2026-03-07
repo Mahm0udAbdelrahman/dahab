@@ -84,7 +84,7 @@
                                                                     ({{ $lang }})
                                                                 </label>
                                                                 <input type="text" name="name[{{ $key }}]"
-                                                                    value="{{ old("name.$key", data_get($offer->name, $key)) }}"
+                                                                    value="{{ old("name.$key", data_get($product->name, $key)) }}"
                                                                     class="form-control">
                                                                 @error("name.$key")
                                                                     <small class="text-danger">{{ $message }}</small>
@@ -96,7 +96,7 @@
                                                                     ({{ $lang }})</label>
                                                                 <input type="text"
                                                                     name="description[{{ $key }}]"
-                                                                    value="{{ old("description.$key", data_get($offer->description, $key)) }}"
+                                                                    value="{{ old("description.$key", data_get($product->description, $key)) }}"
                                                                     class="form-control">
                                                                 @error("description.$key")
                                                                     <small class="text-danger">{{ $message }}</small>
