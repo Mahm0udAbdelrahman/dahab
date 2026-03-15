@@ -342,9 +342,6 @@
     [dir="rtl"] .select-icon { right: auto; left: 15px; }
     [dir="rtl"] .me-2 { margin-left: 0.5rem !important; margin-right: 0 !important; }
     [dir="rtl"] .text-end { text-align: left !important; }
-
-    /* Fix for older Bootstrap versions */
-    .d-none { display: none !important; }
 </style>
 @endpush
 

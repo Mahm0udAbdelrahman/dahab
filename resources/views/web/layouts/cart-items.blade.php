@@ -37,7 +37,7 @@
     </div>
 
     <div class="cart-btns mt-3 d-flex justify-content-between">
-        <a href="{{ route('carts.index') }}" class="btn btn-primary btn-sm w-100">
+        <a href="{{ route('carts.index') }}" id="view-cart-btn" class="btn btn-primary btn-sm w-100">
             {{ __('View Cart') }}
         </a>
     </div>

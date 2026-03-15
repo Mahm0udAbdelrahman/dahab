@@ -11,6 +11,10 @@
 .w-100 { width: 100% !important; }
 .mt-3 { margin-top: 16px !important; }
 
+/* Force Visibility Classes for older Bootstrap */
+.d-none { display: none !important; }
+.show { display: block !important; }
+
 .header-ctn {
     display: flex !important;
     align-items: center;
@@ -264,5 +268,25 @@
     }
     .account-dropdown .dropdown-toggle span {
         display: none !important;
+    }
+
+    /* Fix Cart Dropdown on Mobile */
+    .cart-dropdown {
+        position: fixed !important;
+        top: 60px !important;
+        left: 5% !important;
+        right: 5% !important;
+        width: 90% !important;
+        min-width: unset !important;
+        max-height: 80vh !important;
+        z-index: 9999 !important;
+        overflow-y: auto !important;
+    }
+
+    .cart-btns a {
+        position: relative !important;
+        z-index: 10000 !important;
+        pointer-events: auto !important;
+        display: block !important;
     }
 }
