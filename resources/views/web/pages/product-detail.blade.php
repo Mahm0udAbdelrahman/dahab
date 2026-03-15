@@ -155,7 +155,10 @@
                     quantity: quantity
                 })
                 .done(function(response) {
-                    toastr.success('تم إضافة ' + quantity + ' قطعة إلى السلة بنجاح');
+                    toastr.success(response.message || 'تم إضافة المنتج إلى السلة');
+                    $('#cart-count').text(response.cart_count);
+                    $('.js-cart-count').text(response.cart_count);
+                    $('#cart-content-wrapper').html(response.cart_html);
                 })
                 .fail(function(xhr) {
                     if (xhr.status === 401) toastr.warning('يجب تسجيل الدخول أولاً');

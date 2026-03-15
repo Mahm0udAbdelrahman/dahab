@@ -175,7 +175,12 @@
                 e.preventDefault();
                 var productId = $(this).data('product-id');
                 $.post('{{ route('carts.store') }}', { product_id: productId })
-                    .done(function() { toastr.success('تم إضافة المنتج إلى السلة'); })
+                    .done(function(response) {
+                        toastr.success(response.message || 'تم إضافة المنتج إلى السلة');
+                        $('#cart-count').text(response.cart_count);
+                        $('.js-cart-count').text(response.cart_count);
+                        $('#cart-content-wrapper').html(response.cart_html);
+                    })
                     .fail(function(xhr) {
                         if (xhr.status === 401) toastr.warning('يجب تسجيل الدخول أولاً');
                         else toastr.error('حدث خطأ أثناء الإضافة');

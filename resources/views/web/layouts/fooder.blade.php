@@ -1,3 +1,6 @@
+	@php
+		$setting = App\Models\Setting::first();
+	@endphp
 	<footer id="footer">
 			<!-- top footer -->
 			<div class="section">
@@ -10,8 +13,8 @@
 								<h3 class="footer-title">About Us</h3>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
 								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
+									<li><a href="#"><i class="fa fa-map-marker"></i> {{ $setting->address[app()->getLocale()] }}</a></li>
+									<li><a href="#"><i class="fa fa-phone"></i>{{ $setting->phone }}</a></li>
 									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
 								</ul>
 							</div>
@@ -50,7 +53,7 @@
 								<h3 class="footer-title">Service</h3>
 								<ul class="footer-links">
 									<li><a href="#">My Account</a></li>
-									<li><a href="#">View Cart</a></li>
+									<li><a href="{{ route('carts.index') }}">{{ __('View Cart') }}</a></li>
 									<li><a href="#">Wishlist</a></li>
 									<li><a href="#">Track My Order</a></li>
 									<li><a href="#">Help</a></li>

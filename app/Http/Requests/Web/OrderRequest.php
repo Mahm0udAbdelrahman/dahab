@@ -25,6 +25,7 @@ class OrderRequest extends FormRequest
             'name'           => 'required|string|max:255',
             'address'        => 'required|string|max:255',
             'phone'          => 'required|string|max:20',
+            'wasl'           => 'required_if:payment_status,instapay,vodafonecash|file|mimes:pdf,jpg,jpeg,png|max:10000000',
         ];
     }
 }

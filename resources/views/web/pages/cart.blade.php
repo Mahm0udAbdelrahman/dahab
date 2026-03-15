@@ -95,18 +95,58 @@
                         <span class="fw-bold fs-4 text-dark" id="cart-total">{{ number_format($total, 2) }} ج.م</span>
                     </div>
 
-                    <form action="{{ route('order.store') }}" method="POST">
+                    <form action="{{ route('order.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group mb-3">
                             <label class="form-label-premium">{{ __('Payment') }}</label>
                             <div class="select-wrapper">
-                                <select name="payment_status" class="form-control-premium" required>
+                                <select name="payment_status" id="payment-status-select" class="form-control-premium" required>
                                     <option value="cash">💵 Cash on Delivery</option>
                                     <option value="instapay">⚡ Instapay</option>
                                     <option value="vodafonecash">🔴 Vodafone Cash</option>
                                 </select>
                                 <i class="las la-angle-down select-icon"></i>
+                            </div>
+                        </div>
+
+                        <!-- Payment Modal -->
+                        <div class="modal fade" id="paymentDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content border-0 shadow-lg rounded-4">
+                                    <div class="modal-header border-0 pb-0">
+                                        <button type="button" class="close px-3 py-2" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true" class="fs-4">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body text-center p-4">
+                                        <div id="modal-vodafone-info" class="d-none">
+                                            <div class="mb-3">
+                                                <i class="la la-mobile fs-1 text-danger" style="font-size: 80px;"></i>
+                                            </div>
+                                            <h4 class="fw-bold text-danger mb-3">فودافون كاش</h4>
+                                            <p class="mb-2 fs-5">يرجى تحويل المبلغ إلى الرقم التالي:</p>
+                                            <div class="bg-light p-3 rounded-3 mb-4">
+                                                <span class="fw-bold fs-3 text-dark">{{ $setting->vodafonecash ?? '01062612997' }}</span>
+                                            </div>
+                                            <p class="text-muted small">بعد التحويل، يرجى إرفاق صورة الإيصال (الوصل) في الأسفل لتأكيد الطلب.</p>
+                                        </div>
+                                        
+                                        <div id="modal-instapay-info" class="d-none">
+                                            <div class="mb-3">
+                                                <i class="la la-bolt fs-1 text-info" style="font-size: 80px;"></i>
+                                            </div>
+                                            <h4 class="fw-bold text-info mb-3">انستاباي</h4>
+                                            <p class="mb-2 fs-5">يرجى تحويل المبلغ إلى العنوان/الرقم التالي:</p>
+                                            <div class="bg-light p-3 rounded-3 mb-4">
+                                                <span class="fw-bold fs-3 text-dark">{{ $setting->instapay ?? '01146613334' }}</span>
+                                            </div>
+                                            <p class="text-muted small">بعد التحويل، يرجى إرفاق صورة الإيصال (الوصل) في الأسفل لتأكيد الطلب.</p>
+                                        </div>
+                                        
+                                        <button type="button" class="btn btn-dark btn-lg w-100 rounded-pill mt-3" data-dismiss="modal">فهمت، سأقوم بالدفع الآن</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -119,6 +159,12 @@
                         <div class="form-group mb-4">
                             <label class="form-label-premium">{{ __('Shipping To') }}</label>
                             <textarea name="address" class="form-control-premium" rows="2" placeholder="{{ __('Full Address') }}" required></textarea>
+                        </div>
+
+                        <div class="form-group mb-4" id="wasl-input-container">
+                            <label class="form-label-premium">{{ __('Wasl (Receipt Receipt)') }}</label>
+                            <input type="file" name="wasl" class="form-control-premium" placeholder="{{ __('Wasl') }}">
+                            <small class="text-muted d-block mt-1">{{ __('Please upload a screenshot of your transfer.') }}</small>
                         </div>
 
                         <button type="submit" class="btn btn-info btn-lg w-100 py-3 rounded-pill fw-bold checkout-btn shadow-lg">
@@ -296,6 +342,9 @@
     [dir="rtl"] .select-icon { right: auto; left: 15px; }
     [dir="rtl"] .me-2 { margin-left: 0.5rem !important; margin-right: 0 !important; }
     [dir="rtl"] .text-end { text-align: left !important; }
+
+    /* Fix for older Bootstrap versions */
+    .d-none { display: none !important; }
 </style>
 @endpush
 
@@ -349,6 +398,35 @@ $(document).ready(function() {
             });
         });
     }
+
+    // Payment Info Modal Logic
+    $('#payment-status-select').on('change', function() {
+        let selected = $(this).val();
+        let $vodafone = $('#modal-vodafone-info');
+        let $instapay = $('#modal-instapay-info');
+        let $waslContainer = $('#wasl-input-container');
+
+        // Reset all Visibility first
+        $vodafone.addClass('d-none');
+        $instapay.addClass('d-none');
+        $waslContainer.addClass('d-none');
+
+        if (selected === 'vodafonecash') {
+            $vodafone.removeClass('d-none');
+            $waslContainer.removeClass('d-none');
+            $('#paymentDetailsModal').modal('show');
+        } else if (selected === 'instapay') {
+            $instapay.removeClass('d-none');
+            $waslContainer.removeClass('d-none');
+            $('#paymentDetailsModal').modal('show');
+        }
+        // If cash, it stays hidden
+    });
+
+    // Cleanup when modal is closed manually
+    $('#paymentDetailsModal').on('hidden.bs.modal', function() {
+        $('#modal-vodafone-info, #modal-instapay-info').addClass('d-none');
+    });
 });
 </script>
 @endpush

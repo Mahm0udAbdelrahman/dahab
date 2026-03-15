@@ -53,6 +53,10 @@
                                     <label class="form-label">{{ __('Address') }}</label>
                                     <textarea name="address" class="form-control" rows="3">{{ $order->address }}</textarea>
                                 </div>
+                                <div class="mb-3">
+                                    <label class="form-label">{{ __('wasl') }}</label>
+                                    <textarea name="wasl" class="form-control" rows="3">{{ $order->wasl }}</textarea>
+                                </div>
                                 <button type="submit" class="btn btn-primary w-100">{{ __('Save Changes') }}</button>
                             </div>
                         </div>

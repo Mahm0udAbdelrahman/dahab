@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('instagram')->nullable();
             $table->string('tiktok')->nullable();
             $table->string('whatsapp')->nullable();
+            $table->string('instapay')->nullable();
+            $table->string('vodafonecash')->nullable();
             $table->timestamps();
         });
     }

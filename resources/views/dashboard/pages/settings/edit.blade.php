@@ -169,6 +169,22 @@
                                         @enderror
                                     </div>
 
+                                    <div class="col-md-6">
+                                        <label class="form-label">{{ __('instapay') }}</label>
+                                        <input type="text" name="instapay" value="{{ old('instapay', $setting->instapay ?? '') }}" class="form-control">
+                                        @error('instapay')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label">{{ __('vodafonecash') }}</label>
+                                        <input type="text" name="vodafonecash" value="{{ old('vodafonecash', $setting->vodafonecash ?? '') }}" class="form-control">
+                                        @error('vodafonecash')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+
 
 
 

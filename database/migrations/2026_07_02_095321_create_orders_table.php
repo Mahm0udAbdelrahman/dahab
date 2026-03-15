@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->enum('payment_status', ['cash','instapay','vodafonecash'])->default('cash');
+            $table->text('wasl')->nullable();
             $table->timestamps();
         });
     }

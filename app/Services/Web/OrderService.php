@@ -7,15 +7,20 @@ use App\Models\User;
 use App\Notifications\DashboardNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
-
+use App\Traits\HasImage;
 class OrderService
 {
+    use HasImage;
 
     public function cashOrder($data)
     {
         $user = auth()->user();
 
         $cartItems = Cart::where('user_id', $user->id)->get();
+
+        if (isset($data['wasl'])) {
+            $data['wasl'] = $this->saveImage($data['wasl'], 'orders/wasl');
+        }
 
         $order = Order::create([
             'user_id'        => $user->id,

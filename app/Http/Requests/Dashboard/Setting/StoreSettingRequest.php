@@ -35,6 +35,8 @@ class StoreSettingRequest extends FormRequest
             'instagram'  => ['nullable', 'string', 'max:255'],
             'tiktok'     => ['nullable', 'string', 'max:255'],
             'whatsapp'   => ['nullable', 'string', 'max:255'],
+            'instapay'   => ['nullable', 'string', 'max:255'],
+            'vodafonecash' => ['nullable', 'string', 'max:255'],
 
         ];
     }

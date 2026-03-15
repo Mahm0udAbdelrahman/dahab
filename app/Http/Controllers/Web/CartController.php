@@ -43,6 +43,17 @@ class CartController extends Controller
             'total' => $product->price * $request->quantity ?? 1,
         ]);
 
+        if ($request->ajax()) {
+            $cartItems = Cart::with('product.images')->where('user_id', auth()->id())->get();
+            $cartCount = $cartItems->count();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'تم إضافة المنتج إلى السلة',
+                'cart_count' => $cartCount,
+                'cart_html' => view('web.layouts.cart-items', compact('cartItems', 'cartCount'))->render()
+            ]);
+        }
+
         return to_route('carts.index');
 
     }

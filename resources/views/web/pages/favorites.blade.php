@@ -239,7 +239,12 @@
             e.preventDefault();
             var productId = $(this).data('product-id');
             $.post('{{ route("carts.store") }}', { product_id: productId, quantity: 1 })
-                .done(function() { toastr.success('{{ __("Added to cart successfully") }}'); })
+                .done(function(response) {
+                    toastr.success(response.message || '{{ __("Added to cart successfully") }}');
+                    $('#cart-count').text(response.cart_count);
+                    $('.js-cart-count').text(response.cart_count);
+                    $('#cart-content-wrapper').html(response.cart_html);
+                })
                 .fail(function() { toastr.error('{{ __("Failed to add to cart") }}'); });
         });
     });
