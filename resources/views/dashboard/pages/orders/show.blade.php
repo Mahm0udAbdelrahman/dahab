@@ -25,6 +25,7 @@
                             <tr><th>{{ __('Payment Status') }}:</th><td><span class="badge bg-light-secondary">{{ $order->payment_status }}</span></td></tr>
                             <tr><th>{{ __('Order Status') }}:</th><td><span class="badge bg-info">{{ $order->status }}</span></td></tr>
                             <tr><th>{{ __('Date') }}:</th><td>{{ $order->created_at->format('Y-m-d H:i') }}</td></tr>
+                            <tr><th>{{ __('wasl') }}:</th><td><img src="{{ asset($order->wasl) }}" alt=""></td></tr>
                         </table>
                     </div>
                 </div>
