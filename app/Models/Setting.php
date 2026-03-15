@@ -17,6 +17,8 @@ class Setting extends Model
         'instagram',
         'tiktok',
         'whatsapp',
+        'vodafonecash',
+        'instapay',
     ];
 
     protected $casts = [
