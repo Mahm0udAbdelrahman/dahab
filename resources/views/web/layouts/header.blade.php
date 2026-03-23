@@ -7,14 +7,14 @@
                         <i class="fa fa-phone"></i> {{ $setting->phone }}
                     </a>
                 </li>
-                <li>
+                <li class="hidden-xs">
                     <a href="mailto:{{ $setting->email }}" class="d-flex align-items-center gap-1">
-                        <i class="fa fa-envelope-o"></i> {{ $setting->email }}
+                        <i class="fa fa-envelope-o"></i> <span class="hidden-sm hidden-xs">{{ $setting->email }}</span>
                     </a>
                 </li>
-                <li class="d-flex align-items-center gap-1">
+                <li class="d-flex align-items-center gap-1 hidden-xs">
                     <i class="fa fa-map-marker"></i>
-                    {{ $setting->address[app()->getLocale()] }}
+                    <span class="text-truncate" style="max-width: 150px;">{{ $setting->address[app()->getLocale()] }}</span>
                 </li>
             </ul>
 
@@ -27,7 +27,7 @@
         <div class="container">
             <div class="row align-items-center">
 
-                <div class="col-md-2 col-xs-4">
+                <div class="col-md-2 col-xs-6">
                     <a href="{{ route('home') }}" class="logo d-block">
                         <img src="{{ asset('web/img/logo_two.png') }}" height="80" alt="Logo">
                     </a>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-5 col-xs-8">
+                <div class="col-md-5 col-xs-6">
                     <div class="header-ctn d-flex justify-content-end align-items-center gap-4">
 
                         <div class="dropdown lang-dropdown">

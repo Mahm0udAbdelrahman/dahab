@@ -813,6 +813,26 @@ textarea.input {
   margin: 0px 5px;
 }
 
+@media only screen and (max-width: 767px) {
+  .hot-deal .hot-deal-countdown>li {
+    width: 70px;
+    height: 70px;
+    margin: 5px;
+  }
+  .hot-deal .hot-deal-countdown>li>div h3 {
+    font-size: 18px;
+  }
+  .hot-deal .hot-deal-countdown>li>div span {
+    font-size: 8px;
+  }
+  .hot-deal p {
+    font-size: 18px;
+  }
+  .hot-deal h2 {
+    font-size: 24px;
+  }
+}
+
 .hot-deal .hot-deal-countdown>li>div {
   position: absolute;
   left: 0;

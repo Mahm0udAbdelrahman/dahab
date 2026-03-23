@@ -4,7 +4,7 @@
     <div class="section">
         <div class="container">
             <div class="row">
-                <div class="col-md-5 col-md-push-2">
+                <div class="col-md-5 col-md-push-2 col-xs-12">
                     <div id="product-main-img">
                         @foreach ($product->images as $image)
                             <div class="product-preview">
@@ -13,7 +13,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="col-md-2 col-md-pull-5">
+                <div class="col-md-2 col-md-pull-5 col-xs-12">
                     <div id="product-imgs">
                         @foreach ($product->images as $image)
                             <div class="product-preview">
@@ -22,7 +22,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-5 col-xs-12">
                     <div class="product-details">
                         <h2 class="product-name">{{ $product->name[app()->getLocale()] }}</h2>
                         <div>

@@ -112,6 +112,14 @@ ul, ol {
   }
 }
 
+/* Mobile Reset for push/pull */
+@media (max-width: 991px) {
+  [class*="col-md-push-"], [class*="col-md-pull-"] {
+    right: auto !important;
+    left: auto !important;
+  }
+}
+
 /*----------------------------*\
 	Buttons
 \*----------------------------*/

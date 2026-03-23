@@ -213,6 +213,13 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+    .header-ctn {
+        flex-wrap: nowrap !important;
+        gap: 10px !important; 
+        justify-content: flex-end !important;
+        width: 100%;
+        padding: 5px 0;
+    }
     .header-search {
         display: none;
     }

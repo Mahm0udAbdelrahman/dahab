@@ -140,6 +140,16 @@
     color: #d10024;
 }
 
+@media (max-width: 767px) {
+    #top-header .container {
+        justify-content: center !important;
+    }
+    #top-header ul.header-links {
+        justify-content: center !important;
+        width: 100%;
+    }
+}
+
 /* Main Header */
 #header {
     background-color: #121212;
@@ -247,9 +257,9 @@
         width: 100%;
     }
     .header-ctn {
-        flex-wrap: wrap !important;
-        gap: 15px 20px !important; 
-        justify-content: center !important;
+        flex-wrap: nowrap !important;
+        gap: 12px !important; 
+        justify-content: flex-end !important;
         width: 100%;
         padding: 5px 0;
     }
@@ -259,7 +269,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        min-width: 40px;
+        min-width: 35px;
     }
     .header-ctn i {
         color: #fff !important; 
