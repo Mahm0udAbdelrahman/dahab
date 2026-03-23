@@ -27,6 +27,7 @@
 			speed: 300,
 			dots: false,
 			arrows: true,
+			rtl: window.isRtl,
 			appendArrows: $nav ? $nav : false,
 			responsive: [{
 	        breakpoint: 991,
@@ -57,6 +58,7 @@
 			speed: 300,
 			dots: false,
 			arrows: true,
+			rtl: window.isRtl,
 			appendArrows: $nav ? $nav : false,
 		});
 	});
@@ -69,7 +71,8 @@
     speed: 300,
     dots: false,
     arrows: true,
-    fade: true,
+    fade: window.isRtl ? false : true, // Disable fade in RTL as it often causes visibility issues
+    rtl: window.isRtl,
     asNavFor: '#product-imgs',
   });
 
@@ -83,6 +86,7 @@
 		centerPadding: 0,
 		vertical: true,
     asNavFor: '#product-main-img',
+	rtl: window.isRtl,
 		responsive: [{
         breakpoint: 991,
         settings: {

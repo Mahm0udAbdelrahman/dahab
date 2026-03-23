@@ -148,6 +148,12 @@
 }
 
 /* Search box */
+.header-search {
+    max-width: 450px !important;
+    margin-right: auto !important; /* Pushes towards logo in LTR */
+    margin-left: 0 !important;
+}
+
 .header-search input,
 .header-search select {
     border-radius: 5px;

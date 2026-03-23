@@ -22,10 +22,32 @@
                     <div class="col-md-6">
                         <h6 class="text-primary border-bottom pb-2">{{ __('Payment & Status') }}</h6>
                         <table class="table table-borderless">
-                            <tr><th>{{ __('Payment Status') }}:</th><td><span class="badge bg-light-secondary">{{ $order->payment_status }}</span></td></tr>
-                            <tr><th>{{ __('Order Status') }}:</th><td><span class="badge bg-info">{{ $order->status }}</span></td></tr>
+                            <tr><th>{{ __('Payment Status') }}:</th><td><span class="badge bg-light-secondary">{{ __($order->payment_status) }}</span></td></tr>
+                            <tr><th>{{ __('Order Status') }}:</th><td><span class="badge bg-info">{{ __($order->status) }}</span></td></tr>
                             <tr><th>{{ __('Date') }}:</th><td>{{ $order->created_at->format('Y-m-d H:i') }}</td></tr>
-                            <tr><th>{{ __('wasl') }}:</th><td><img src="{{ asset($order->wasl) }}" alt=""></td></tr>
+                            <tr>
+                                <th>{{ __('wasl') }}:</th>
+                                <td>
+                                    @if ($order->wasl)
+                                        <div class="mt-1">
+                                            <img src="{{ asset($order->wasl) }}" alt="wasl"
+                                                class="img-fluid rounded shadow-sm mb-2 d-block" style="max-height: 150px;">
+                                            <div class="d-flex gap-2">
+                                                <a href="{{ asset($order->wasl) }}" target="_blank"
+                                                    class="btn btn-sm btn-info">
+                                                    <i class="ti ti-eye"></i> {{ __('View') }}
+                                                </a>
+                                                <a href="{{ asset($order->wasl) }}" download="wasl_{{ $order->id }}"
+                                                    class="btn btn-sm btn-success">
+                                                    <i class="ti ti-download"></i> {{ __('Download') }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <span class="text-muted">{{ __('No receipt uploaded') }}</span>
+                                    @endif
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>

@@ -66,6 +66,9 @@
 
     <!-- jQuery Plugins -->
     <script src="{{ asset('web/js/jquery.min.js') }}"></script>
+    <script>
+        window.isRtl = {{ app()->getLocale() == 'ar' ? 'true' : 'false' }};
+    </script>
     <script src="{{ asset('web/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('web/js/slick.min.js') }}"></script>
     <script src="{{ asset('web/js/nouislider.min.js') }}"></script>

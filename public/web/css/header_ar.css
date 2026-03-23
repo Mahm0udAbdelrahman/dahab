@@ -2,8 +2,8 @@
 .header-ctn {
     display: flex !important;
     align-items: center;
-    justify-content: flex-end;
-    gap: 18px;
+    justify-content: flex-end !important; /* FAR LEFT in RTL */
+    gap: 20px;
 }
 
 .header-ctn > div {
@@ -132,10 +132,16 @@
     border: 1px solid #ccc;
 }
 
+.header-search {
+    max-width: 450px !important;
+    margin-left: 40px !important; /* Pushes towards logo in RTL */
+    margin-right: 0 !important;
+}
+
 .header-search button {
     background-color: #d10024;
     border: none;
-    padding: 8px 20px;
+    padding: 8px 15px;
     border-radius: 5px;
     color: #fff;
     transition: background-color 0.3s ease;
@@ -157,8 +163,8 @@
 
 .category-select {
     flex-shrink: 0;
-    width: 160px;
-    min-width: 160px;
+    width: 120px; /* Further reduced */
+    min-width: 120px;
     border-radius: 5px;
     border: 1px solid #ccc;
     box-shadow: 0 1px 5px rgba(0,0,0,0.2);
@@ -175,13 +181,14 @@
 
 .search-btn {
     flex-shrink: 0;
-    padding: 8px 24px;
+    padding: 8px 15px;
     border-radius: 5px;
     border: none;
     background-color: #d10024;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-left: 0; /* Removed margin that pushed right */
 }
 
 .search-btn:hover {

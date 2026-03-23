@@ -286,7 +286,7 @@
 
                     <div class="order-card-footer">
                         <div class="order-price">
-                            {{ number_format($item->price, 0) }} <span>EGP</span>
+                            {{ number_format($item->price, 0) }} <span>{{ __('EGP') }}</span>
                         </div>
                         <a href="#" class="btn-view-order">
                             {{ __('Details') }}

@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="en" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" dir="ltr"
+<html lang="{{ app()->getLocale() }}" data-pc-preset="preset-1" data-pc-sidebar-caption="true" 
+    data-pc-direction="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}" 
+    dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}"
     data-pc-theme="light">
 <!-- [Head] start -->
 
@@ -102,7 +104,7 @@
     </script>
 
     <script>
-        layout_rtl_change('false');
+        layout_rtl_change('{{ app()->getLocale() == 'ar' ? 'true' : 'false' }}');
     </script>
 
     <script>

@@ -11,9 +11,9 @@ class OrderController extends Controller
     public function __construct(public OrderService $orderService)
     {}
 
-    public function store(Request $orderRequest)
+    public function store(OrderRequest $orderRequest)
     {
-        return $this->orderService->cashOrder($orderRequest->all());
+        return $this->orderService->cashOrder($orderRequest->validated());
     }
 
 }

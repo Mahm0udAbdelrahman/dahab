@@ -19,7 +19,7 @@
             </ul>
 
             <ul class="header-links mb-0 hidden-xs">
-                <li><i class="fa fa-clock-o"></i> 24/7 Support</li>
+                <li><i class="fa fa-clock-o"></i> {{ __('24/7 Support') }}</li>
             </ul>
         </div>
     </div>
@@ -27,7 +27,7 @@
         <div class="container">
             <div class="row align-items-center">
 
-                <div class="col-md-3 col-xs-4">
+                <div class="col-md-2 col-xs-4">
                     <a href="{{ route('home') }}" class="logo d-block">
                         <img src="{{ asset('web/img/logo_two.png') }}" height="80" alt="Logo">
                     </a>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 col-xs-8">
+                <div class="col-md-5 col-xs-8">
                     <div class="header-ctn d-flex justify-content-end align-items-center gap-4">
 
                         <div class="dropdown lang-dropdown">

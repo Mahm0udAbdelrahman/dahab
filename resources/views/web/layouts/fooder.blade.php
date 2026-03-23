@@ -10,8 +10,8 @@
 					<div class="row">
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">About Us</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+								<h3 class="footer-title">{{ __('About Us') }}</h3>
+								<p>{{ __('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.') }}</p>
 								<ul class="footer-links">
 									<li><a href="#"><i class="fa fa-map-marker"></i> {{ $setting->address[app()->getLocale()] }}</a></li>
 									<li><a href="#"><i class="fa fa-phone"></i>{{ $setting->phone }}</a></li>
@@ -22,13 +22,13 @@
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">Categories</h3>
+								<h3 class="footer-title">{{ __('Categories') }}</h3>
 								<ul class="footer-links">
-									<li><a href="#">Hot deals</a></li>
-									<li><a href="#">Laptops</a></li>
-									<li><a href="#">Smartphones</a></li>
-									<li><a href="#">Cameras</a></li>
-									<li><a href="#">Accessories</a></li>
+									<li><a href="#">{{ __('Hot deals') }}</a></li>
+									<li><a href="#">{{ __('Laptops') }}</a></li>
+									<li><a href="#">{{ __('Smartphones') }}</a></li>
+									<li><a href="#">{{ __('Cameras') }}</a></li>
+									<li><a href="#">{{ __('Accessories') }}</a></li>
 								</ul>
 							</div>
 						</div>
@@ -37,26 +37,26 @@
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">Information</h3>
+								<h3 class="footer-title">{{ __('Information') }}</h3>
 								<ul class="footer-links">
-									<li><a href="#">About Us</a></li>
-									<li><a href="#">Contact Us</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-									<li><a href="#">Orders and Returns</a></li>
-									<li><a href="#">Terms & Conditions</a></li>
+									<li><a href="#">{{ __('About Us') }}</a></li>
+									<li><a href="#">{{ __('Contact Us') }}</a></li>
+									<li><a href="#">{{ __('Privacy Policy') }}</a></li>
+									<li><a href="#">{{ __('Orders and Returns') }}</a></li>
+									<li><a href="#">{{ __('Terms & Conditions') }}</a></li>
 								</ul>
 							</div>
 						</div>
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">Service</h3>
+								<h3 class="footer-title">{{ __('Service') }}</h3>
 								<ul class="footer-links">
-									<li><a href="#">My Account</a></li>
+									<li><a href="#">{{ __('My Account') }}</a></li>
 									<li><a href="{{ route('carts.index') }}">{{ __('View Cart') }}</a></li>
-									<li><a href="#">Wishlist</a></li>
-									<li><a href="#">Track My Order</a></li>
-									<li><a href="#">Help</a></li>
+									<li><a href="#">{{ __('Wishlist') }}</a></li>
+									<li><a href="#">{{ __('Track My Order') }}</a></li>
+									<li><a href="#">{{ __('Help') }}</a></li>
 								</ul>
 							</div>
 						</div>
@@ -83,7 +83,7 @@
 							</ul>
 							<span class="copyright">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+								{{ __('Copyright') }} &copy;<script>document.write(new Date().getFullYear());</script> {{ __('All rights reserved') }} | {{ __('This template is made with') }} <i class="fa fa-heart-o" aria-hidden="true"></i> {{ __('by') }} <a href="https://colorlib.com" target="_blank">Colorlib</a>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</span>
 						</div>

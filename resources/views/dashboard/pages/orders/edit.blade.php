@@ -4,7 +4,7 @@
 @section('content')
     <div class="pc-container">
         <div class="pc-content">
-            <form action="{{ route('Admin.orders.update', $order) }}" method="POST">
+            <form action="{{ route('Admin.orders.update', $order) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -32,11 +32,11 @@
                                     <label class="form-label">{{ __('Payment Status') }}</label>
                                     <select name="payment_status" class="form-select">
                                         <option value="cash" {{ $order->payment_status == 'cash' ? 'selected' : '' }}>
-                                            Cash</option>
+                                            {{ __('Cash') }}</option>
                                         <option value="instapay"
-                                            {{ $order->payment_status == 'instapay' ? 'selected' : '' }}>Instapay</option>
+                                            {{ $order->payment_status == 'instapay' ? 'selected' : '' }}>{{ __('Instapay') }}</option>
                                         <option value="vodafonecash"
-                                            {{ $order->payment_status == 'vodafonecash' ? 'selected' : '' }}>Vodafone Cash
+                                            {{ $order->payment_status == 'vodafonecash' ? 'selected' : '' }}>{{ __('Vodafone Cash') }}
                                         </option>
                                     </select>
                                 </div>
@@ -53,11 +53,26 @@
                                     <label class="form-label">{{ __('Address') }}</label>
                                     <textarea name="address" class="form-control" rows="3">{{ $order->address }}</textarea>
                                 </div>
-                                //wasl
-                                <div class="mb-3">
+                            
+                                 <div class="mb-3">
                                     <label class="form-label">{{ __('wasl') }}</label>
-                                     <input type="file" name="wasl" class="form-control" value="{{ $order->wasl }}">
-                                     <img src="{{ asset($order->phone) }}" alt="">
+                                    <input type="file" name="wasl" class="form-control mb-2">
+                                    @if ($order->wasl)
+                                        <div class="mt-2 text-center p-3 border rounded">
+                                            <img src="{{ asset($order->wasl) }}" alt="wasl"
+                                                class="img-fluid rounded shadow-sm mb-3" style="max-height: 200px;">
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <a href="{{ asset($order->wasl) }}" target="_blank"
+                                                    class="btn btn-sm btn-info">
+                                                    <i class="ti ti-eye"></i> {{ __('View') }}
+                                                </a>
+                                                <a href="{{ asset($order->wasl) }}" download="wasl_{{ $order->id }}"
+                                                    class="btn btn-sm btn-success">
+                                                    <i class="ti ti-download"></i> {{ __('Download') }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                                 <button type="submit" class="btn btn-primary w-100">{{ __('Save Changes') }}</button>
                             </div>

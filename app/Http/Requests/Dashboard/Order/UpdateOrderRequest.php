@@ -21,7 +21,12 @@ class UpdateOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status' => ['nullable', 'in:pending,delivery,cancelled,completed'],
+            'status'         => ['nullable', 'in:pending,delivery,cancelled,completed'],
+            'payment_status' => ['nullable', 'in:cash,instapay,vodafonecash'],
+            'name'           => ['nullable', 'string', 'max:255'],
+            'phone'          => ['nullable', 'string', 'max:20'],
+            'address'        => ['nullable', 'string'],
+            'wasl'           => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:10240'],
         ];
     }
 }

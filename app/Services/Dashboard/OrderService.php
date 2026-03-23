@@ -27,11 +27,11 @@ class OrderService
 
     public function update($id, $data)
     {
-        $product = $this->show($id);
+        $order = $this->show($id);
 
-        $product->update($data);
+        $order->update($data);
 
-        return $product;
+        return $order;
     }
 
     public function destroy($id)

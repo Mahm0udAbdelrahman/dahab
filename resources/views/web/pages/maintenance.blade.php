@@ -3,8 +3,8 @@
 @section('content')
     <div class="maintenance-section section">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
+            <div class="row" style="text-align: center;">
+                <div class="col-md-8" style="display: inline-block; float: none !important; text-align: right;">
                     <div class="maintenance-card">
                         @if (Session::has('message'))
                             <div class="alert alert-{{ Session::get('message.type') }} alert-dismissible shadow-sm">
@@ -28,7 +28,7 @@
                             <div class="form-group-modern">
                                 <label><i class="fa fa-user"></i> {{ __('Name Phone') }}</label>
                                 <input type="text" name="title" class="input-modern"
-                                    placeholder="e.g. Samsung Galaxy S21" required>
+                                    placeholder="{{ __('e.g. Samsung Galaxy S21') }}" required>
                                 <span class="focus-border"></span>
                             </div>
 

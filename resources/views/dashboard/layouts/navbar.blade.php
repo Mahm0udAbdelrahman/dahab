@@ -12,7 +12,7 @@
         <div class="navbar-content h-[calc(100vh_-_74px)] py-2.5">
             <ul class="pc-navbar">
                 <li class="pc-item pc-caption">
-                    <label>Dashboard</label>
+                    <label>{{ __('Dashboard') }}</label>
                 </li>
                 <li class="pc-item">
                 <li class="pc-item">
@@ -20,7 +20,7 @@
                         <span class="pc-micon">
                             <i data-feather="home"></i>
                         </span>
-                        <span class="pc-mtext">Dashboard</span>
+                        <span class="pc-mtext">{{ __('Dashboard') }}</span>
                     </a>
                 </li>
                 {{--  <li class="pc-item pc-caption">
@@ -31,7 +31,7 @@
                     <li class="pc-item pc-hasmenu">
                         <a href="{{ route('Admin.roles.index') }}" class="pc-link">
                             <span class="pc-micon"><i data-feather="shield"></i></span>
-                            <span class="pc-mtext">Role</span>
+                            <span class="pc-mtext">{{ __('Role') }}</span>
                         </a>
                     </li>
                 @endcan
@@ -39,7 +39,7 @@
                     <li class="pc-item pc-hasmenu">
                         <a href="{{ route('Admin.users.index') }}" class="pc-link">
                             <span class="pc-micon"><i data-feather="users"></i></span>
-                            <span class="pc-mtext">User</span>
+                            <span class="pc-mtext">{{ __('User') }}</span>
                         </a>
                     </li>
                 @endcan
@@ -48,7 +48,7 @@
                     <li class="pc-item pc-hasmenu">
                         <a href="{{ route('Admin.send_notifications.index') }}" class="pc-link">
                             <span class="pc-micon"><i data-feather="send"></i></span>
-                            <span class="pc-mtext">Send Notification</span>
+                            <span class="pc-mtext">{{ __('Send Notification') }}</span>
                         </a>
                     </li>
                 @endcan
@@ -57,7 +57,7 @@
                     <li class="pc-item pc-hasmenu">
                         <a href="{{ route('Admin.categories.index') }}" class="pc-link">
                             <span class="pc-micon"><i data-feather="send"></i></span>
-                            <span class="pc-mtext">Categories</span>
+                            <span class="pc-mtext">{{ __('Categories') }}</span>
                         </a>
                     </li>
                 @endcan
@@ -66,7 +66,7 @@
                     <li class="pc-item pc-hasmenu">
                         <a href="{{ route('Admin.products.index') }}" class="pc-link">
                             <span class="pc-micon"><i data-feather="send"></i></span>
-                            <span class="pc-mtext">Products</span>
+                            <span class="pc-mtext">{{ __('Products') }}</span>
                         </a>
                     </li>
                 @endcan
@@ -75,7 +75,7 @@
                     <li class="pc-item pc-hasmenu">
                         <a href="{{ route('Admin.sales.index') }}" class="pc-link">
                             <span class="pc-micon"><i data-feather="send"></i></span>
-                            <span class="pc-mtext">Sales</span>
+                            <span class="pc-mtext">{{ __('Sales') }}</span>
                         </a>
                     </li>
                 @endcan
@@ -84,7 +84,7 @@
                     <li class="pc-item pc-hasmenu">
                         <a href="{{ route('Admin.maintenances.index') }}" class="pc-link">
                             <span class="pc-micon"><i data-feather="send"></i></span>
-                            <span class="pc-mtext">Maintenances</span>
+                            <span class="pc-mtext">{{ __('Maintenances') }}</span>
                         </a>
                     </li>
                 @endcan
@@ -93,7 +93,7 @@
                     <li class="pc-item pc-hasmenu">
                         <a href="{{ route('Admin.orders.index') }}" class="pc-link">
                             <span class="pc-micon"><i data-feather="send"></i></span>
-                            <span class="pc-mtext">Orders</span>
+                            <span class="pc-mtext">{{ __('Orders') }}</span>
                         </a>
                     </li>
                 @endcan
@@ -102,7 +102,7 @@
                     <li class="pc-item pc-hasmenu">
                         <a href="{{ route('Admin.settings.edit') }}" class="pc-link">
                             <span class="pc-micon"><i data-feather="send"></i></span>
-                            <span class="pc-mtext">Settings</span>
+                            <span class="pc-mtext">{{ __('Settings') }}</span>
                         </a>
                     </li>
                 @endcan

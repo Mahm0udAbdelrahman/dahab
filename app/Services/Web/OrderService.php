@@ -32,6 +32,7 @@ class OrderService
             'payment_status' => $data['payment_status'],
             'phone'          => $data['phone'],
             'status'         => 'pending',
+            'wasl'           => $data['wasl'] ?? null,
         ]);
 
         foreach ($cartItems as $item) {

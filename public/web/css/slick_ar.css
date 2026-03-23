@@ -77,14 +77,14 @@
 .slick-slide
 {
     display: none;
-    float: right;
+    float: left;
 
     height: 100%;
     min-height: 1px;
 }
 [dir='rtl'] .slick-slide
 {
-    float: left;
+    float: right;
 }
 .slick-slide img
 {

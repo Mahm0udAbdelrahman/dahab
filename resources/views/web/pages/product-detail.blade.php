@@ -39,13 +39,13 @@
                             <h3 class="product-price">${{ $product->discounted_price }}
                                 <del class="product-old-price">${{ $product->price }}</del>
                             </h3>
-                            <span class="product-available">In Stock</span>
+                            <span class="product-available">{{ __('In Stock') }}</span>
                         </div>
                         <p>{{ $product->description[app()->getLocale()] }}</p>
 
                         <div class="add-to-cart">
                             <div class="qty-label">
-                                Qty
+                                {{ __('Qty') }}
                                 <div class="input-number">
                                     {{-- القالب (Electro) هيتعامل مع الـ qty-up والـ qty-down تلقائياً --}}
                                     <input type="number" id="main-product-qty" value="1" min="1">
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                             <button class="add-to-cart-btn" data-product-id="{{ $product->id }}">
-                                <i class="fa fa-shopping-cart"></i> add to cart
+                                <i class="fa fa-shopping-cart"></i> {{ __('add to cart') }}
                             </button>
                         </div>
 
@@ -70,12 +70,12 @@
                         </ul>
 
                         <ul class="product-links">
-                            <li>Category:</li>
+                            <li>{{ __('Category:') }}</li>
                             <li><a href="#">{{ $product->category->name[app()->getLocale()] }}</a></li>
                         </ul>
 
                         <ul class="product-links">
-                            <li>Share:</li>
+                            <li>{{ __('Share:') }}</li>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="#"><i class="fa fa-envelope"></i></a></li>
@@ -90,7 +90,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-title text-center">
-                        <h3 class="title">Related Products</h3>
+                        <h3 class="title">{{ __('Related Products') }}</h3>
                     </div>
                 </div>
 
@@ -120,7 +120,7 @@
                             </div>
                             <div class="add-to-cart">
                                 <button class="add-to-cart-btn" data-product-id="{{ $relatedProduct->id }}">
-                                    <i class="fa fa-shopping-cart"></i> add to cart
+                                    <i class="fa fa-shopping-cart"></i> {{ __('add to cart') }}
                                 </button>
                             </div>
                         </div>

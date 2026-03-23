@@ -3,8 +3,8 @@
 @section('content')
 <div class="sale-section section">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+        <div class="row" style="text-align: center;">
+            <div class="col-md-8" style="display: inline-block; float: none !important; text-align: right;">
                 <div class="sale-card">
 
                     @if(Session::has('message'))
@@ -25,15 +25,15 @@
                     <form action="{{ route('sales.store') }}" method="POST" enctype="multipart/form-data" class="modern-form">
                         @csrf
 
-                      <div class="form-group-modern">
+                        <div class="form-group-modern">
                             <label><i class="fa fa-user"></i> {{ __('Name Phone') }}</label>
-                            <input type="text" name="title" class="input-modern" placeholder="e.g. Samsung Galaxy S21" required>
+                            <input type="text" name="title" class="input-modern" placeholder="{{ __('e.g. Samsung Galaxy S21') }}" required>
                             <span class="focus-border"></span>
                         </div>
 
                         <div class="form-group-modern">
                             <label><i class="fa fa-dollar"></i> {{ __('Expected Price') }}</label>
-                            <input type="text" name="price" class="input-modern" placeholder="e.g. 500 EGP" required>
+                            <input type="text" name="price" class="input-modern" placeholder="{{ __('e.g. 500 EGP') }}" required>
                         </div>
 
                         <div class="form-group-modern">

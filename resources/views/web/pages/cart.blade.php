@@ -102,9 +102,9 @@
                             <label class="form-label-premium">{{ __('Payment') }}</label>
                             <div class="select-wrapper">
                                 <select name="payment_status" id="payment-status-select" class="form-control-premium" required>
-                                    <option value="cash">💵 Cash on Delivery</option>
-                                    <option value="instapay">⚡ Instapay</option>
-                                    <option value="vodafonecash">🔴 Vodafone Cash</option>
+                                    <option value="cash">💵 {{ __('Cash on Delivery') }}</option>
+                                    <option value="instapay">⚡ {{ __('Instapay') }}</option>
+                                    <option value="vodafonecash">🔴 {{ __('Vodafone Cash') }}</option>
                                 </select>
                                 <i class="las la-angle-down select-icon"></i>
                             </div>
@@ -112,7 +112,7 @@
 
                         <!-- Payment Modal -->
                         <div class="modal fade" id="paymentDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-dialog" role="document">
                                 <div class="modal-content border-0 shadow-lg rounded-4">
                                     <div class="modal-header border-0 pb-0">
                                         <button type="button" class="close px-3 py-2" data-dismiss="modal" aria-label="Close">
@@ -141,24 +141,29 @@
                                             <div class="bg-light p-3 rounded-3 mb-4">
                                                 <span class="fw-bold fs-3 text-dark">{{ $setting->instapay ?? '01146613334' }}</span>
                                             </div>
-                                            <p class="text-muted small">بعد التحويل، يرجى إرفاق صورة الإيصال (الوصل) في الأسفل لتأكيد الطلب.</p>
+                                            <p class="text-muted small">{{ __('After transferring, please attach a screenshot of the receipt below to confirm the order.') }}</p>
                                         </div>
                                         
-                                        <button type="button" class="btn btn-dark btn-lg w-100 rounded-pill mt-3" data-dismiss="modal">فهمت، سأقوم بالدفع الآن</button>
+                                        <button type="button" class="btn btn-dark btn-lg w-100 rounded-pill mt-3" data-dismiss="modal">{{ __('Understood, I will pay now') }}</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label class="form-label-premium">{{ __('Details') }}</label>
-                            <input type="text" name="name" class="form-control-premium mb-2" placeholder="{{ __('Full Name') }}" required>
-                            <input type="tel" name="phone" class="form-control-premium" placeholder="{{ __('Phone Number') }}" required>
+                            <label class="form-label-premium">{{ __('Name') }}</label>
+                            <input type="text" name="name" class="form-control-premium" placeholder="{{ __('Your Full Name') }}"
+                                value="{{ auth()->user()->name ?? '' }}" required>
                         </div>
-
-                        <div class="form-group mb-4">
-                            <label class="form-label-premium">{{ __('Shipping To') }}</label>
-                            <textarea name="address" class="form-control-premium" rows="2" placeholder="{{ __('Full Address') }}" required></textarea>
+                        <div class="form-group mb-3">
+                            <label class="form-label-premium">{{ __('Phone') }}</label>
+                            <input type="text" name="phone" class="form-control-premium" placeholder="{{ __('Mobile Number') }}"
+                                value="{{ auth()->user()->phone ?? '' }}" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label-premium">{{ __('Address') }}</label>
+                            <input type="text" name="address" class="form-control-premium" placeholder="{{ __('Shipping Address') }}"
+                                value="{{ auth()->user()->address ?? '' }}" required>
                         </div>
 
                         <div class="form-group mb-4" id="wasl-input-container">
@@ -338,6 +343,26 @@
         box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
     }
 
+    /* Modal Centering (Bootstrap 3) */
+    #paymentDetailsModal {
+        text-align: center;
+        padding: 0 !important;
+    }
+
+    #paymentDetailsModal:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -4px;
+    }
+
+    #paymentDetailsModal .modal-dialog {
+        display: inline-block;
+        text-align: initial;
+        vertical-align: middle;
+    }
+
     /* RTL Adjustments */
     [dir="rtl"] .select-icon { right: auto; left: 15px; }
     [dir="rtl"] .me-2 { margin-left: 0.5rem !important; margin-right: 0 !important; }
@@ -397,28 +422,38 @@ $(document).ready(function() {
     }
 
     // Payment Info Modal Logic
-    $('#payment-status-select').on('change', function() {
-        let selected = $(this).val();
+    function handlePaymentChange(showModal = false) {
+        let selected = $('#payment-status-select').val();
         let $vodafone = $('#modal-vodafone-info');
         let $instapay = $('#modal-instapay-info');
         let $waslContainer = $('#wasl-input-container');
+        let $waslInput = $waslContainer.find('input[name="wasl"]');
 
-        // Reset all Visibility first
+        // Reset all Visibility and Required first
         $vodafone.addClass('d-none');
         $instapay.addClass('d-none');
         $waslContainer.addClass('d-none');
+        $waslInput.prop('required', false);
 
         if (selected === 'vodafonecash') {
             $vodafone.removeClass('d-none');
             $waslContainer.removeClass('d-none');
-            $('#paymentDetailsModal').modal('show');
+            $waslInput.prop('required', true);
+            if (showModal) $('#paymentDetailsModal').modal('show');
         } else if (selected === 'instapay') {
             $instapay.removeClass('d-none');
             $waslContainer.removeClass('d-none');
-            $('#paymentDetailsModal').modal('show');
+            $waslInput.prop('required', true);
+            if (showModal) $('#paymentDetailsModal').modal('show');
         }
-        // If cash, it stays hidden
+    }
+
+    $('#payment-status-select').on('change', function() {
+        handlePaymentChange(true);
     });
+
+    // Initial trigger to hide/show correctly on load without showing modal
+    handlePaymentChange(false);
 
     // Cleanup when modal is closed manually
     $('#paymentDetailsModal').on('hidden.bs.modal', function() {
