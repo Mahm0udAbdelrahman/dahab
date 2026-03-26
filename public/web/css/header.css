@@ -253,7 +253,7 @@
 @media (max-width: 768px) {
     .header-search {
         display: block;
-        margin-top: 15px;
+        margin: 10px 0 !important;
         width: 100%;
     }
     .header-ctn {
@@ -293,8 +293,22 @@
         display: block !important;
         margin: 0 !important;
     }
-    .account-dropdown .dropdown-toggle span {
+    .lang-dropdown, .account-dropdown {
         display: none !important;
+    }
+    #top-header .lang-dropdown, #top-header .account-dropdown {
+        display: flex !important;
+    }
+    #top-header .container {
+        padding: 0 15px;
+    }
+    #top-header ul.header-links.visible-xs {
+        display: flex !important;
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+        border-top: 1px solid #333;
+        padding-top: 10px;
     }
 
     /* Fix Cart Dropdown on Mobile */

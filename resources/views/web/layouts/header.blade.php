@@ -21,6 +21,44 @@
             <ul class="header-links mb-0 hidden-xs">
                 <li><i class="fa fa-clock-o"></i> {{ __('24/7 Support') }}</li>
             </ul>
+
+            <!-- Mobile only: Language & Account in Top Header -->
+            <ul class="header-links mb-0 visible-xs visible-sm d-flex gap-3">
+                <li class="dropdown lang-dropdown">
+                    <a class="dropdown-toggle lang-toggle d-flex align-items-center gap-1" data-toggle="dropdown" href="#">
+                        <i class="fa fa-globe"></i>
+                        <span class="lang-text text-uppercase">{{ app()->getLocale() }}</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right lang-menu p-0 mt-2 shadow rounded">
+                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            <a href="{{ LaravelLocalization::getLocalizedURL($localeCode) }}"
+                                class="dropdown-item lang-item d-flex justify-content-between align-items-center px-3 py-2 {{ app()->getLocale() == $localeCode ? 'active fw-bold text-danger' : '' }}">
+                                <span>{{ $properties['native'] }}</span>
+                            </a>
+                        @endforeach
+                    </div>
+                </li>
+                <li class="dropdown account-dropdown">
+                    <a class="dropdown-toggle d-flex align-items-center gap-1 text-decoration-none" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user-o"></i>
+                        <span class="text-white">{{ auth()->check() ? explode(' ', auth()->user()->name)[0] : __('Login') }}</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right account-menu p-0 mt-2 shadow rounded">
+                        @auth
+                            <a href="{{ route('logout') }}" class="dropdown-item px-3 py-2" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="fa fa-sign-out me-2"></i> {{ __('Logout') }}
+                            </a>
+                        @else
+                            <a href="{{ route('login') }}" class="dropdown-item px-3 py-2">
+                                <i class="fa fa-sign-in me-2"></i> {{ __('Login') }}
+                            </a>
+                            <a href="{{ route('register') }}" class="dropdown-item px-3 py-2">
+                                <i class="fa fa-user-plus me-2"></i> {{ __('Register') }}
+                            </a>
+                        @endauth
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
     <div id="header">
