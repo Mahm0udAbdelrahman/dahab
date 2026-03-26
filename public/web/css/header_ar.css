@@ -224,7 +224,18 @@
         display: none;
     }
     .header-ctn span.lang-text {
-        display: none;
+        display: none !important;
+    }
+    .lang-dropdown, .account-dropdown {
+        display: flex !important;
+    }
+    @media (max-width: 380px) {
+        .header-ctn {
+            gap: 8px !important;
+        }
+        .header-ctn > div, .header-ctn > .menu-toggle {
+            min-width: 30px;
+        }
     }
     .menu-toggle {
         display: block !important;
